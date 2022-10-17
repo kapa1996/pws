@@ -1,3 +1,6 @@
+Write-Host -ForegroundColor Yellow ".............Windows Post Installation Script............"
+write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
+
 #changing the ip address based on user input
 function Get-IpInput {
     $ipnput = read-host "Do You Want To Change Ip Address? Please Answer yes or no"
@@ -140,28 +143,31 @@ else {
 #SAP GUI
 $sap = Read-Host "Do You Want To Install SAP GUI? Please Answer Yes Or No"
 if ($sap |Where-Object {$_.Length -ge "3"}) {
-    '.\SAP 7.6 Win32\SapGuiSetup.exe'
+    & '.\SAP_7.6 Win32\SapGuiSetup.exe'
 }
 else {
     Write-Host "SAP GUI Will Be Not Installed On This Device"
 }
 
-#office 2010
-$office10 = Read-Host "Do You Want To Install Office 10? Please Answer Yes Or No"
-if ($office10 |Where-Object {$_.Length -ge "3"}) {
-    .\Office_2010w_SP1_W32_English_CORE_MLF_X17-82110_2\setup.exe /adminfile test.msp
+#office version install
+$officeinput = Read-Host "Do You Want To Install Office On This Device? Please Answer Yes Or No"
+if ($officeinput |Where-Object {$_.Length -ge "3"}) {
+    function install-office {
+        $office = read-host -Prompt "What version Of Office Package You Need To install? (Please Answer 0365,10,13)"
+    switch ($office) {
+        '0365'   {.\OfficeSetup.exe}
+        '10'     {.\Office_2010w_SP1_W32_English_CORE_MLF_X17-82110_2\setup.exe /adminfile test.msp}
+        '13'     {.\SW_DVD5_Office_2013w_SP1_32-BIT_X64_English_MLF_X19-34823\x64\setup.exe}
+        Default     { write-host "Please Input The Correct Answer (0365,10,13)"
+    
+        install-office 
+        }
+    } 
+    }
+    install-office 
 }
 else {
-    Write-Host "Office 10 Will Be Not Installed On This Device"
-}
-
-#office 365
-$365 = Read-Host "Do You Want To Install Office 365? Please Answer Yes Or No"
-if ($365 |Where-Object {$_.Length -ge "3"}) {
-    .\OfficeSetup.exe
-}
-else {
-    Write-Host "Office 365 Will Be Not Installed On This Device"
+    Write-Host "Office Will Be Not Installed On This Device"
 }
 
 }
