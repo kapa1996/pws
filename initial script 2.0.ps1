@@ -1,3 +1,5 @@
+#intro and instruction 
+
 Write-Host -ForegroundColor Yellow ".............Windows Post Installation Script............"
 write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
