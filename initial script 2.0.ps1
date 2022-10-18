@@ -112,7 +112,7 @@ if ($softinstall |Where-Object {$_.Length -ge '3'}) {
     .\ChromeSetup.exe
     
     #ManageEngine agent
-    .\LocalOffice_Agent.exe
+    .\LocalOffice_Agent.exe /silent
 
 #special Software list
 
