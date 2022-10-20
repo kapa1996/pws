@@ -160,7 +160,7 @@ if ($officeinput |Where-Object {$_.Length -ge "3"}) {
         '0365'   {.\OfficeSetup.exe}
         '10'     {.\Office_2010w_SP1_W32_English_CORE_MLF_X17-82110_2\setup.exe /adminfile test.msp}
         '13'     {.\SW_DVD5_Office_2013w_SP1_32-BIT_X64_English_MLF_X19-34823\x64\setup.exe}
-        Default     { write-host "Please Input The Correct Answer (0365,10,13)"
+        Default  { write-host "Please Input The Correct Answer (0365,10,13)"
     
         install-office 
         }
