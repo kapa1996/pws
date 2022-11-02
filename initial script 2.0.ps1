@@ -75,12 +75,12 @@ Set-TimeZone -Id "Sri Lanka Standard Time"
 
 #software installation section
 $softinstall = Read-Host "Do You Want To Install Software? Please Answer Yes Or No"
-Get-volume |Format-List DriveLetter,Size,SizeRemaining,FileSystem,friendlyname
 
 if ($softinstall |Where-Object {$_.Length -ge '3'}) {
     
     function HDD {
-    
+        
+        Get-Volume |Format-List FileSystemLabel,DriveLetter
         $hdri = Read-Host -Prompt "Enter The Drive Letter Of IT-HDD (EG -'D')"
     
         switch ($hdri) {
