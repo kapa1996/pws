@@ -3,6 +3,11 @@
 Write-Host -ForegroundColor Yellow ".............Windows Post Installation Script............"
 write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
+#changing powershell execution policy
+
+Set-ExecutionPolicy Bypass
+
+
 #changing the ip address based on user input
 function Get-IpInput {
     $ipnput = read-host "Do You Want To Change Ip Address? Please Answer yes or no"
@@ -180,51 +185,46 @@ Write-Host "Softwares Will Be Not Installed On This Device"
 
 #computer rename with serialnumber
 
+write-host -foregroundcolour red "renaming the computer will restart the device so make sure all softwears are finished installing"
 $cnameinput = Read-Host "Do You Want To Rename The Computer? Please Answer Yes Or No"
+
 if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
     wmic bios get serialnumber
-    $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)" 
-    #Rename-Computer -NewName $cname
-    $ComputerName = "$cname"
-   
-Remove-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "Hostname" 
-Remove-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "NV Hostname" 
+    $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)"
+    Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
+    "C:\Users\lahiru.priyankara\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\part2.ps1" 
+    Start-Sleep -Seconds 10 
+Rename-Computer -NewName $cname -Restart -Force
 
-Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Computername\Computername" -name "Computername" -value $ComputerName
-Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Control\Computername\ActiveComputername" -name "Computername" -value $ComputerName
-Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "Hostname" -value $ComputerName
-Set-ItemProperty -path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -name "NV Hostname" -value  $ComputerName
-Set-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -name "AltDefaultDomainName" -value $ComputerName
-Set-ItemProperty -path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -name "DefaultDomainName" -value $ComputerName
-
+  
 }
+
 else {
     Write-Host "Computer Name Will Not Changed"
 }
 
 #domain Settings
-
 function domain {
-       $domain = Read-Host -Prompt "Do You Want To Add This Computer To Domain? Please Answer Yes Or No"
-    switch ($domain) {
-        "yes" { 
-            if (Get-WmiObject -Class Win32_ComputerSystem|Where-Object {$_.PartOfDomain -like "true"}) { 
-    
-            write-host "This Computer IS Already A Domain Joined Computer"
-        }
-        else {
-            $domainname =Read-Host -Prompt "Please Enter The Domain Name"
-            $getcre     =Get-Credential
-            Add-Computer -DomainName $domainname -DomainCredential $getcre
-        } }
+    $domain = Read-Host -Prompt "Do You Want To Add This Computer To Domain? Please Answer Yes Or No"
+ switch ($domain) {
+     "yes" { 
+         if (Get-WmiObject -Class Win32_ComputerSystem|Where-Object {$_.PartOfDomain -like "true"}) { 
+ 
+         write-host "This Computer IS Already A Domain Joined Computer"
+     }
+     else {
+         $domainname =Read-Host -Prompt "Please Enter The Domain Name"
+         $getcre     =Get-Credential
+         Add-Computer -DomainName $domainname -DomainCredential $getcre
+     } }
 
-        'no' {Write-Host "Computer Will Not Joined To Domain"}
+     'no' {Write-Host "Computer Will Not Joined To Domain"}
 
-        Default {Write-host Please Answer Yes Or No
+     Default {Write-host Please Answer Yes Or No
 
-        domain   }
-    }
-  
+     domain   }
+ }
+
 } 
 domain
 
@@ -239,20 +239,20 @@ $namee2 = Get-WmiObject -Class win32_product
 #virus guard status
 
 if ($namee |Where-Object {$_.Publisher -eq "Kaspersky"}) {
-    Write-Host -ForegroundColor Cyan "Virus guard is installed on this device"}
- else {
-        Write-Host -ForegroundColor red "Virus guard is not installed on this device"
-    }
+ Write-Host -ForegroundColor Cyan "Virus guard is installed on this device"}
+else {
+     Write-Host -ForegroundColor red "Virus guard is not installed on this device"
+ }
 
 
 #vpn status
 
 if ($namee2 |Where-Object {$_.vendor -eq "Fortinet Technologies Inc"}) {
-    Write-Host -ForegroundColor Cyan "VPN client is installed on this device"
+ Write-Host -ForegroundColor Cyan "VPN client is installed on this device"
 }
 
 else {
-    Write-Host -ForegroundColor red "VPN client is not installed on this device"
+ Write-Host -ForegroundColor red "VPN client is not installed on this device"
 }
 
 #adobe reader status
@@ -302,7 +302,6 @@ else{Write-Host -ForegroundColor Red "Google chrome is not installed on this dev
 
 }
 
+Start-Sleep -Seconds 10
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
-
-
