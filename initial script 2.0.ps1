@@ -192,7 +192,7 @@ if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
     wmic bios get serialnumber
     $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)"
     Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
-    "C:\Users\lahiru.priyankara\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\part2.ps1" 
+    "$env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\part2.ps1" 
     Start-Sleep -Seconds 10 
 Rename-Computer -NewName $cname -Restart -Force
 
