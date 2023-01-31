@@ -101,7 +101,7 @@ else{Write-Host -ForegroundColor Red "Google chrome is not installed on this dev
 
 #deleting the powershell script that downloaded
 
-Remove-Item -Path -Force "C:\Users\lahiru.priyankara\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\part2.ps1"
+Remove-Item -Path -Force "$env:USERPROFILE\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\part2.ps1"
 
 Start-Sleep -Seconds 10
 
