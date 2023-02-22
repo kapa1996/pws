@@ -185,7 +185,8 @@ Write-Host "Softwares Will Be Not Installed On This Device"
 
 #computer rename with serialnumber
 
-write-host -foregroundcolour red "renaming the computer will restart the device so make sure all softwears are finished installing"
+write-host -foregroundcolor red "renaming the computer will restart the device so make sure all softwears are finished installing"
+
 $cnameinput = Read-Host "Do You Want To Rename The Computer? Please Answer Yes Or No"
 
 if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
