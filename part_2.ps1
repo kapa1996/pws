@@ -30,7 +30,7 @@ Set-ExecutionPolicy Restricted
 
 $namee = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 $namee2 = Get-WmiObject -Class win32_product
-
+$vlc = Test-Path "C:\Program Files\VideoLAN"
 #virus guard status
 
 if ($namee |Where-Object {$_.Publisher -eq "Kaspersky"}) {
@@ -99,7 +99,7 @@ else{Write-Host -ForegroundColor Red "Google chrome is not installed on this dev
 
 #vlc status 
 
-if ($namee |Where-Object {$_.DisplayName -like "*vlc*"}) {
+if ($vlc -eq $true) {
 
     Write-Host -ForegroundColor Cyan "VLC Player is installed on this device"
 }
