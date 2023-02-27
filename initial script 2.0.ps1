@@ -107,7 +107,7 @@ if ($softinstall |Where-Object {$_.Length -ge '3'}) {
     .\winrar.exe /s 
     
     #vlc
-    .\vlc.exe
+    .\media_player.exe
     
     #adobe-reader
     Copy-Item .\adobe\adobereader.exe.exe ".\"
