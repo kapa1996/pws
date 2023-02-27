@@ -28,34 +28,33 @@ domain
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
 
-
 $namee = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 $namee2 = Get-WmiObject -Class win32_product
 
 #virus guard status
 
 if ($namee |Where-Object {$_.Publisher -eq "Kaspersky"}) {
- Write-Host -ForegroundColor Cyan "Virus guard is installed on this device"}
-else {
-     Write-Host -ForegroundColor red "Virus guard is not installed on this device"
- }
+    Write-Host -ForegroundColor Cyan "Virus guard is installed on this device"}
+ else {
+        Write-Host -ForegroundColor red "Virus guard is not installed on this device"
+    }
 
 
 #vpn status
 
-if ($namee2 |Where-Object {$_.vendor -eq "Fortinet Technologies Inc"}) {
- Write-Host -ForegroundColor Cyan "VPN client is installed on this device"
+if ($namee2 |Where-Object {$_.vendor -like "*Fortinet*"}) {
+    Write-Host -ForegroundColor Cyan "VPN client is installed on this device"
 }
 
 else {
- Write-Host -ForegroundColor red "VPN client is not installed on this device"
+    Write-Host -ForegroundColor red "VPN client is not installed on this device"
 }
 
 #adobe reader status
 
 if ($namee2 |Where-Object {$_.vendor -like "*Adobe*"}) {
 
-Write-Host -ForegroundColor Cyan "Adobe reader is insttaled on this device"}
+Write-Host -ForegroundColor Cyan "Adobe reader is installed on this device"}
 
 else { Write-Host -ForegroundColor Red "Adobe reader is not installed on this device"
 }
@@ -71,7 +70,7 @@ else { Write-Host -ForegroundColor Red "Manageengine is installed on this device
 
 #anydesk status
 
-if ( $namee |Where-Object {$_.Publisher -eq "philandro Software GmbH"}){
+if ( $namee |Where-Object {$_.DisplayName -like "*anyde*"}){
 
 Write-Host -ForegroundColor Cyan "Anydesk is installed on this device"}
 
@@ -89,7 +88,7 @@ else {Write-Host -ForegroundColor Red "SAP is not installed on this device"
 
 #Chrome status
 
-if ($namee |Where-Object {$_.Publisher -eq "Google LLC"}) {
+if ($namee |Where-Object {$_.displayname -like "*Google*"}) {
 
 Write-Host -ForegroundColor Cyan "Google chrome is installed on this device"
 }
@@ -98,6 +97,26 @@ else{Write-Host -ForegroundColor Red "Google chrome is not installed on this dev
 
 }
 
+#vlc status 
+
+if ($namee |Where-Object {$_.DisplayName -like "*vlc*"}) {
+
+    Write-Host -ForegroundColor Cyan "VLC Player is installed on this device"
+}
+
+else {
+    Write-Host -ForegroundColor red "VLC Player is not installed on this device"
+}
+
+#office status 
+
+if ($namee2 |Where-Object {$_.Name -like "*office*"}) {
+    write-host -ForegroundColor Cyan "Office package is installed on this device"
+}
+
+else {
+    Write-Host -ForegroundColor Red "Office package is not installed on this device"
+}
 
 #deleting the powershell script that downloaded
 
