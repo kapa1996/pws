@@ -240,6 +240,8 @@ Set-ExecutionPolicy Restricted
 
 #ckecking installed softwares on this device
 
+read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking (press anykey to continue) "
+
 Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
 $namee = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate

@@ -28,7 +28,10 @@ domain
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
 
+
 #checking the installled softwares on this device
+
+read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking"
 
 Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
