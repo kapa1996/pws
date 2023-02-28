@@ -28,9 +28,14 @@ domain
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
 
+#checking the installled softwares on this device
+
+Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
+
 $namee = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 $namee2 = Get-WmiObject -Class win32_product
 $vlc = Test-Path "C:\Program Files\VideoLAN"
+
 #virus guard status
 
 if ($namee |Where-Object {$_.Publisher -eq "Kaspersky"}) {
@@ -122,8 +127,9 @@ else {
 
 Remove-Item -Force -Path "$env:USERPROFILE\desktop\part2.ps1"
 
-Start-Sleep -Seconds 10
+Read-Host -Prompt "Press any key to continue"
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
 
+Start-Sleep -Seconds 10
 

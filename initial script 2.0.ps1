@@ -183,6 +183,10 @@ else {
 Write-Host "Softwares Will Be Not Installed On This Device"
 }
 
+#creating a checkpoint in computer
+
+Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
+
 #computer rename with serialnumber
 
 write-host -foregroundcolor red "renaming the computer will restart the device so make sure all softwars are finished installing"
@@ -233,6 +237,10 @@ domain
 
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
+
+#ckecking installed softwares on this device
+
+Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
 $namee = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate
 $namee2 = Get-WmiObject -Class win32_product
@@ -325,6 +333,9 @@ else {
     Write-Host -ForegroundColor Red "Office package is not installed on this device"
 }
 
-Start-Sleep -Seconds 10
+Read-Host -Prompt "Press any key to continue"
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
+
+Start-Sleep -Seconds 10
+
