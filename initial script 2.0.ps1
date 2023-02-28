@@ -233,10 +233,6 @@ function domain {
 } 
 domain
 
-#setting up powershell execution policy to restricted
-
-write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
-Set-ExecutionPolicy Restricted
 
 #ckecking installed softwares on this device
 
@@ -335,7 +331,14 @@ else {
     Write-Host -ForegroundColor Red "Office package is not installed on this device"
 }
 
+
+#setting up powershell execution policy to restricted
+
+write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
+Set-ExecutionPolicy Restricted
+
 Read-Host -Prompt "Press any key to continue"
+
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
 

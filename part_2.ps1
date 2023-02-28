@@ -23,11 +23,6 @@ function domain {
 } 
 domain
 
-#setting up powershell execution policy to restricted
-
-write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
-Set-ExecutionPolicy Restricted
-
 
 #checking the installled softwares on this device
 
@@ -129,6 +124,11 @@ else {
 #deleting the powershell script that downloaded
 
 Remove-Item -Force -Path "$env:USERPROFILE\desktop\part2.ps1"
+
+#setting up powershell execution policy to restricted
+
+write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
+Set-ExecutionPolicy Restricted
 
 Read-Host -Prompt "Press any key to continue"
 
