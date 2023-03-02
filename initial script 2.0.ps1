@@ -236,7 +236,7 @@ domain
 
 #ckecking installed softwares on this device
 
-read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking (press anykey to continue) "
+read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking (press ENTER to continue) "
 
 Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
@@ -337,7 +337,7 @@ else {
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
 
-Read-Host -Prompt "Press any key to continue"
+Read-Host -Prompt "Press ENTER key to continue"
 
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."

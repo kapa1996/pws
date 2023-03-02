@@ -26,7 +26,7 @@ domain
 
 #checking the installled softwares on this device
 
-read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking"
+read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking (press ENTER key to Continue)"
 
 Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
@@ -130,7 +130,7 @@ Remove-Item -Force -Path "$env:USERPROFILE\desktop\part2.ps1"
 write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
 Set-ExecutionPolicy Restricted
 
-Read-Host -Prompt "Press any key to continue"
+Read-Host -Prompt "Press ENTER key to continue"
 
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
 
