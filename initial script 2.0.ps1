@@ -78,6 +78,10 @@ Write-Host -ForegroundColor  Yellow "Changing time setting to sri lanakan standa
 
 Set-TimeZone -Id "Sri Lanka Standard Time"
 
+#creating a checkpoint in computer
+
+Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
+
 #software installation section
 $softinstall = Read-Host "Do You Want To Install Software? Please Answer Yes Or No"
 
@@ -182,10 +186,6 @@ else {
 else {
 Write-Host "Softwares Will Be Not Installed On This Device"
 }
-
-#creating a checkpoint in computer
-
-Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
 
 #computer rename with serialnumber
 
