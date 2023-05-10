@@ -7,6 +7,8 @@ write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
 Set-ExecutionPolicy Bypass
 
+Remove-Service -name sysmain
+
 
 #changing the ip address based on user input
 function Get-IpInput {
@@ -154,7 +156,7 @@ else {
 #SAP GUI
 $sap = Read-Host "Do You Want To Install SAP GUI? Please Answer Yes Or No"
 if ($sap |Where-Object {$_.Length -ge "3"}) {
-    & '.\SAP_7.6 Win32\SapGuiSetup.exe'
+    .\SAP_New_770\SapGuiSetup.exe
 }
 else {
     Write-Host "SAP GUI Will Be Not Installed On This Device"
