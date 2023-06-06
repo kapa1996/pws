@@ -7,8 +7,11 @@ write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
 Set-ExecutionPolicy Bypass
 
-Remove-Service -name sysmain
+cmd
 
+sc.exe delete sysmain 
+
+powershell
 
 #changing the ip address based on user input
 function Get-IpInput {
@@ -81,6 +84,8 @@ Write-Host -ForegroundColor  Yellow "Changing time setting to sri lanakan standa
 Set-TimeZone -Id "Sri Lanka Standard Time"
 
 #creating a checkpoint in computer
+
+enable-computerrestore -drive "c:\"
 
 Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
 
