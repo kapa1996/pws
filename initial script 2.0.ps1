@@ -7,9 +7,9 @@ write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
 Set-ExecutionPolicy Bypass
 
-cmd
+#cmd
 
-sc.exe delete sysmain 
+#sc  delete sysmain 
 
 powershell
 
@@ -85,7 +85,7 @@ Set-TimeZone -Id "Sri Lanka Standard Time"
 
 #creating a checkpoint in computer
 
-enable-computerrestore -drive "c:\"
+Enable-ComputerRestore  -Drive "c:\"
 
 Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
 
