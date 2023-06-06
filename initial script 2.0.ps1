@@ -11,7 +11,7 @@ Set-ExecutionPolicy Bypass
 
 #sc  delete sysmain 
 
-powershell
+#powershell
 
 #changing the ip address based on user input
 function Get-IpInput {
