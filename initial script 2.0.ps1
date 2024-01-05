@@ -359,10 +359,10 @@ if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
 #    Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
 #    "$env:USERPROFILE\desktop\part2.ps1" 
 Write-Host -ForegroundColor Red "Computer will Restart in 10 Seconds !!!!!!!!!"
+Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
 Start-Sleep -Seconds 10 
 Rename-Computer -NewName $cname -Restart -Force
 
 
 }
 
-Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
