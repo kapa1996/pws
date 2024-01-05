@@ -5,7 +5,7 @@ write-host -ForegroundColor Red "Please Connect To Internet & Plug IT-HDD To PC"
 
 #changing powershell execution policy
 
-Set-ExecutionPolicy Bypass
+#Set-ExecutionPolicy Bypass
 
 #cmd
 
@@ -52,8 +52,8 @@ if (get-localuser -name administrator|Where-Object {$_.enabled -eq $true}) {
      
  }
  else {
-    Write-Host -ForegroundColor Green "Enabling Admin Account !!!!" 
-  $psswd = Read-Host -Prompt "Enter Administrator Password" -AsSecureString 
+    Write-Host -ForegroundColor Green "Enabling Admin Account !!!!!!!!" 
+  $psswd = "ps$#ced212" |ConvertTo-SecureString -AsPlainText -Force 
  Get-LocalUser -Name administrator |Enable-LocalUser 
  Set-LocalUser -Name administrator -AccountNeverExpires -PasswordNeverExpires $true -Password $psswd
  }
@@ -196,49 +196,49 @@ Write-Host "Softwares Will Be Not Installed On This Device"
 
 #computer rename with serialnumber
 
-write-host -foregroundcolor red "renaming the computer will restart the device so make sure all softwars are finished installing"
+#write-host -foregroundcolor red "renaming the computer will restart the device so make sure all softwars are finished installing"
 
-$cnameinput = Read-Host "Do You Want To Rename The Computer? Please Answer Yes Or No"
+#$cnameinput = Read-Host "Do You Want To Rename The Computer? Please Answer Yes Or No"
 
-if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
-    wmic bios get serialnumber
-    $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)"
-    Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
-    "$env:USERPROFILE\desktop\part2.ps1" 
-    Start-Sleep -Seconds 10 
-Rename-Computer -NewName $cname -Restart -Force
+#if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
+#    wmic bios get serialnumber
+#    $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)"
+#    Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
+#    "$env:USERPROFILE\desktop\part2.ps1" 
+#    Start-Sleep -Seconds 10 
+#Rename-Computer -NewName $cname -Restart -Force
 
   
-}
+#}
 
-else {
-    Write-Host "Computer Name Will Not Changed"
-}
+#else {
+#    Write-Host "Computer Name Will Not Changed"
+#}
 
 #domain Settings
-function domain {
-    $domain = Read-Host -Prompt "Do You Want To Add This Computer To Domain? Please Answer Yes Or No"
- switch ($domain) {
-     "yes" { 
-         if (Get-WmiObject -Class Win32_ComputerSystem|Where-Object {$_.PartOfDomain -like "true"}) { 
+#function domain {
+#    $domain = Read-Host -Prompt "Do You Want To Add This Computer To Domain? Please Answer Yes Or No"
+# switch ($domain) {
+#     "yes" { 
+#         if (Get-WmiObject -Class Win32_ComputerSystem|Where-Object {$_.PartOfDomain -like "true"}) { 
  
-         write-host "This Computer IS Already A Domain Joined Computer"
-     }
-     else {
-         $domainname =Read-Host -Prompt "Please Enter The Domain Name"
-         $getcre     =Get-Credential
-         Add-Computer -DomainName $domainname -DomainCredential $getcre
-     } }
+#         write-host "This Computer IS Already A Domain Joined Computer"
+#     }
+#     else {
+#         $domainname =Read-Host -Prompt "Please Enter The Domain Name"
+#         $getcre     =Get-Credential
+#         Add-Computer -DomainName $domainname -DomainCredential $getcre
+#     } }
 
-     'no' {Write-Host "Computer Will Not Joined To Domain"}
+#     'no' {Write-Host "Computer Will Not Joined To Domain"}
 
-     Default {Write-host Please Answer Yes Or No
+#     Default {Write-host Please Answer Yes Or No
 
-     domain   }
- }
+#     domain   }
+# }
 
-} 
-domain
+#} 
+#domain
 
 
 #ckecking installed softwares on this device
@@ -341,13 +341,28 @@ else {
 
 #setting up powershell execution policy to restricted
 
-write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
-Set-ExecutionPolicy Restricted
+#write-host  -Foregroundcolor Green "Changing Powershell Execution Policy To Restricted"
+#Set-ExecutionPolicy Restricted
+
+
 
 Read-Host -Prompt "Press ENTER key to continue"
 
 
+write-host -foregroundcolor red "renaming the computer will restart the device so make sure all softwars are finished installing"
+
+$cnameinput = Read-Host "Do You Want To Rename The Computer? Please Answer Yes Or No"
+
+if ($cnameinput |Where-Object {$_.Length -ge "3"}) {
+    wmic bios get serialnumber
+    $cname =Read-Host "Please Enter The Computername's SerialNumber (see Above)"
+#    Invoke-RestMethod -Uri https://raw.githubusercontent.com/kapa1996/pws/main/part_2.ps1 | out-file -FilePath `
+#    "$env:USERPROFILE\desktop\part2.ps1" 
+Write-Host -ForegroundColor Red "Computer will Restart in 10 Seconds !!!!!!!!!"
+Start-Sleep -Seconds 10 
+Rename-Computer -NewName $cname -Restart -Force
+
+
+}
+
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
-
-Start-Sleep -Seconds 10
-
