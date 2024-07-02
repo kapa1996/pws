@@ -135,7 +135,8 @@ if ($softinstall |Where-Object {$_.Length -ge '3'}) {
 #kaspersky virus guard
 $vgurad = Read-Host "Do You Want To Install Virus Guard? Please Answer Yes Or No"
 if ($vgurad |Where-Object {$_.Length -ge "3"}) {
-   .\installer_Workstation.exe
+   .\crowdstrike.exe
+Write-Host -ForegroundColor Green "Please copy the organization id to the runnig crowd strike apllication = 'DB7D123102454BE68E4DB0F782DB497B-4A' " 
 }
 else {
     Write-Host "Virus Guard Will Be Not Installed On This Device"
@@ -285,7 +286,7 @@ if($namee2 |Where-Object {$_.vendor -eq "ZohoCorp"}) {
 
 Write-Host -ForegroundColor Cyan "Manageengine is installed on this device"}
 
-else { Write-Host -ForegroundColor Red "Manageengine is installed on this device"
+else { Write-Host -ForegroundColor Red "Manageengine is not installed on this device"
 }
 
 #anydesk status
@@ -362,7 +363,6 @@ Write-Host -ForegroundColor Red "Computer will Restart in 10 Seconds !!!!!!!!!"
 Write-host -Foregroundcolor yellow "......................................End Of Script..................................."
 Start-Sleep -Seconds 10 
 Rename-Computer -NewName $cname -Restart -Force
-
 
 }
 
