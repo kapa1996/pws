@@ -162,7 +162,7 @@ else {
 #SAP GUI
 $sap = Read-Host "Do You Want To Install SAP GUI? Please Answer Yes Or No"
 if ($sap |Where-Object {$_.Length -ge "3"}) {
-    .\SAP_New_770\SapGuiSetup.exe
+    .\Win64\SapGui64Setup.exe
 }
 else {
     Write-Host "SAP GUI Will Be Not Installed On This Device"
