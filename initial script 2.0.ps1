@@ -254,7 +254,7 @@ $vlc = Test-Path "C:\Program Files\VideoLAN"
 
 #virus guard status
 
-if ($namee |Where-Object {$_.Publisher -eq "Kaspersky"}) {
+if ($namee2 |Where-Object {$_.vendor -eq "CrowdStrike, Inc."}) {
     Write-Host -ForegroundColor Cyan "Virus guard is installed on this device"}
  else {
         Write-Host -ForegroundColor red "Virus guard is not installed on this device"
@@ -282,7 +282,7 @@ else { Write-Host -ForegroundColor Red "Adobe reader is not installed on this de
 
 #manageengine status
 
-if($namee2 |Where-Object {$_.vendor -eq "ZohoCorp"}) {
+if($namee2 |Where-Object {$_.vendor -eq "Zoho Corporation Pvt. Ltd."}) {
 
 Write-Host -ForegroundColor Cyan "Manageengine is installed on this device"}
 
