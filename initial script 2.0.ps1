@@ -132,7 +132,7 @@ if ($softinstall |Where-Object {$_.Length -ge '3'}) {
 
 #special Software list
 
-#kaspersky virus guard
+#Crowdstrike virus guard
 $vgurad = Read-Host "Do You Want To Install Virus Guard? Please Answer Yes Or No"
 if ($vgurad |Where-Object {$_.Length -ge "3"}) {
    .\crowdstrike.exe
