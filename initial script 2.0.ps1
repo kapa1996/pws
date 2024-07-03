@@ -62,12 +62,31 @@ if (get-localuser -name administrator|Where-Object {$_.enabled -eq $true}) {
 
  if (Get-NetFirewallProfile -Name public,private,domain |Where-Object {$_.enabled -EQ $true}) {
  
-    Set-NetFirewallProfile  -Name public,private,domain -Enabled False ; write-host -ForegroundColor Yellow "Firewall Profile's Status Is Enabled "
+ #   Set-NetFirewallProfile  -Name public,private,domain -Enabled False ; write-host -ForegroundColor Yellow "Firewall Profile's Status Is Enabled "
  
-    ; Write-Host -ForegroundColor Red "Disabaling Them Now"
+#    ; Write-Host -ForegroundColor Red "Disabaling Them Now"
+
+#manageengine Rules in and out 
+New-NetFirewallRule -DisplayName "ManageEngine"  -Direction Inbound -Protocol TCP -LocalPort 8027,8383 -Action Allow -Profile Any
+New-NetFirewallRule -DisplayName "ManageEngine"   -Direction Outbound -Protocol TCP -LocalPort 8027,8383 -Action Allow -Profile Any
+
+#RDP Rule enable
+New-NetFirewallRule -DisplayName "RDP IN" -Direction Inbound -Protocol TCP -LocalPort 3389 -Action Allow -Profile Any
+
+#TCP Rule IN
+New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Inbound -Protocol ICMPv4 -Action Allow -Profile Any
+
+#TCP Rule Out
+New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Outbound -Protocol ICMPv4 -Action Allow -Profile Any
+
+#winrm port
+New-NetFirewallRule -DisplayName "Allow WINRM" -Direction Outbound -LocalPort 5985 -Action Allow -Profile Any 
+
+write-host -ForegroundColor DarkYellow "Firewall status is enabled, firewall rules has been applied (rules include manageengine,RDP,ICMP & WINRM)"
+
 }
 else {
-    write-host -ForegroundColor Green "Firewall Profiles Has Been Already Disabled"
+Set-NetFirewallProfile  -Name public,private,domain -Enabled True ;write-host -ForegroundColor Green "Firewall Profiles Has Been Enabled"
 }
 
 #enable remote login 
