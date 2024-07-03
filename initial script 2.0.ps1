@@ -80,7 +80,7 @@ New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Inboun
 New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Outbound -Protocol ICMPv4 -Action Allow -Profile Any
 
 #winrm port
-New-NetFirewallRule -DisplayName "Allow WINRM" -Direction Outbound -LocalPort 5985 -Action Allow -Profile Any 
+New-NetFirewallRule -DisplayName "Allow WINRM" -Direction Outbound -LocalPort 5985 -Action Allow -Profile Domain 
 
 write-host -ForegroundColor DarkYellow "Firewall status is enabled, firewall rules has been applied (rules include manageengine,RDP,ICMP & WINRM)"
 
