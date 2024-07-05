@@ -1,5 +1,8 @@
-#TCP Rule
-New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Inbound -Protocol ICMPv4 -Action Allow 
+#TCP Rule IN
+New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Inbound -Protocol ICMPv4 -Action Allow -Profile Any
+
+#TCP Rule Out
+New-NetFirewallRule -DisplayName "Allow inbound ICMPv4 (Ping)" -Direction Outbound -Protocol ICMPv4 -Action Allow -Profile Any
 
 #RDP Rule enable
 New-NetFirewallRule -DisplayName "RDP IN" -Direction Inbound -Protocol TCP -LocalPort 3389 -Action Allow -Profile Any
