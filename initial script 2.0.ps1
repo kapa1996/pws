@@ -120,12 +120,6 @@ Write-Host -ForegroundColor  Yellow "Changing time setting to sri lanakan standa
 
 Set-TimeZone -Id "Sri Lanka Standard Time"
 
-#creating a checkpoint in computer
-
-Enable-ComputerRestore  -Drive "c:\"
-
-Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
-
 #software installation section
 $softinstall = Read-Host "Do You Want To Install Software? Please Answer Yes Or No"
 
@@ -282,6 +276,12 @@ Write-Host "Softwares Will Be Not Installed On This Device"
 #ckecking installed softwares on this device
 
 read-host -prompt "Please be sure to check all the softwares are finished installing beofre checking (press ENTER to continue) "
+
+#creating a checkpoint in computer
+
+Enable-ComputerRestore  -Drive "c:\"
+
+Checkpoint-Computer -Description "fresh windows" -RestorePointType MODIFY_SETTINGS
 
 Write-Host -ForegroundColor DarkGreen "Checking the softwares that installed on this device"
 
